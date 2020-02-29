@@ -7,7 +7,7 @@
 #ifndef _STDIO_EXT_H_
 #define _STDIO_EXT_H_
 
-#ifdef __rtems__
+#if defined(__rtems__) || defined(__zephyr__)
 #error "<stdio_ext.h> not supported"
 #endif
 

@@ -3484,6 +3484,9 @@ case "${target}" in
   *-*-vxworks*)
     noconfigdirs="$noconfigdirs ${libgcj}"
     ;;
+  *-*-zephyr*)
+    noconfigdirs="$noconfigdirs ${libgcj}"
+    ;;
   alpha*-*-*vms*)
     noconfigdirs="$noconfigdirs ${libgcj}"
     ;;

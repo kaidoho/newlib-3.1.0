@@ -57,7 +57,7 @@ This function originates from Solaris and is also provided by GNU libc.
 No supporting OS subroutines are required.
 */
 
-#ifndef __rtems__
+#if !defined(__rtems__) && !defined(__zephyr__) 
 
 #include <_ansi.h>
 #include <stdio.h>
@@ -86,4 +86,4 @@ __fsetlocking (FILE * fp,
   return result;
 }
 
-#endif /* __rtems__ */
+#endif /* !__rtems__ && !__zephyr__ */

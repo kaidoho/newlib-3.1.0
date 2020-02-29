@@ -72,7 +72,7 @@ typedef struct {
 } siginfo_t;
 #endif /* defined(_POSIX_REALTIME_SIGNALS) || __POSIX_VISIBLE >= 199309 */
 
-#if defined(__rtems__)
+#if defined(__rtems__) || defined(__zephyr__)
 
 /*  3.3.8 Synchronously Accept a Signal, P1003.1b-1993, p. 76 */
 
@@ -112,7 +112,7 @@ struct sigaction {
 #define sa_sigaction  _signal_handlers._sigaction
 #endif
 
-#else /* defined(__rtems__) */
+#else /* defined(__rtems__ or __zephyr__) */
 
 #define SA_NOCLDSTOP 1  /* only value supported now for sa_flags */
 
@@ -190,7 +190,7 @@ int sigpending (sigset_t *);
 int sigsuspend (const sigset_t *);
 int sigwait (const sigset_t *, int *);
 
-#if !defined(__CYGWIN__) && !defined(__rtems__)
+#if !defined(__CYGWIN__) && !defined(__rtems__) && !defined(__zephyr__)
 /* These depend upon the type of sigset_t, which right now 
    is always a long.. They're in the POSIX namespace, but
    are not ANSI. */
@@ -199,7 +199,7 @@ int sigwait (const sigset_t *, int *);
 #define sigemptyset(what)   (*(what) = 0, 0)
 #define sigfillset(what)    (*(what) = ~(0), 0)
 #define sigismember(what,sig) (((*(what)) & (1<<(sig))) != 0)
-#endif /* !__CYGWIN__ && !__rtems__ */
+#endif /* !__CYGWIN__ && !__rtems__ && !__zephyr__*/
 #endif /* __POSIX_VISIBLE */
 
 /* There are two common sigpause variants, both of which take an int argument.
@@ -290,7 +290,7 @@ int sigqueue (pid_t, int, const union sigval);
 #define	SIGALRM	14	/* alarm clock */
 #define	SIGTERM	15	/* software termination signal from kill */
 
-#if defined(__rtems__)
+#if defined(__rtems__) || defined(__zephyr__)
 #define	SIGURG	16	/* urgent condition on IO channel */
 #define	SIGSTOP	17	/* sendable stop signal not from tty */
 #define	SIGTSTP	18	/* stop signal from tty */

@@ -99,7 +99,7 @@ system (const char *s)
 
 #endif
 
-#if defined (unix) && !defined (__CYGWIN__) && !defined(__rtems__)
+#if defined (unix) && !defined (__CYGWIN__) && !defined(__rtems__) && !defined(__zephyr__)
 extern char **environ;
 
 /* Only deal with a pointer to environ, to work around subtle bugs with shared

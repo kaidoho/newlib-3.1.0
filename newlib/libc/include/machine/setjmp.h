@@ -90,7 +90,7 @@ _BEGIN_STD_C
 #ifdef __i386__
 # if defined(__CYGWIN__) && !defined (_JBLEN)
 #  define _JBLEN (13 * 4)
-# elif defined(__unix__) || defined(__rtems__)
+# elif defined(__unix__) || defined(__rtems__) || defined(__zephyr__)
 #  define _JBLEN	9
 # elif defined(__iamcu__)
 /* Intel MCU jmp_buf only covers callee-saved registers. */
@@ -379,7 +379,7 @@ typedef	int jmp_buf[_JBLEN];
 
 _END_STD_C
 
-#if (defined(__CYGWIN__) || defined(__rtems__)) && __POSIX_VISIBLE
+#if (defined(__CYGWIN__) || defined(__rtems__) || defined(__zephyr__)) && __POSIX_VISIBLE
 #include <signal.h>
 
 #ifdef __cplusplus
@@ -461,4 +461,4 @@ extern int _setjmp (jmp_buf);
 #ifdef __cplusplus
 }
 #endif
-#endif /* (__CYGWIN__ or __rtems__) and __POSIX_VISIBLE */
+#endif /* (__CYGWIN__ or __rtems__ or __zephyr__) and __POSIX_VISIBLE */

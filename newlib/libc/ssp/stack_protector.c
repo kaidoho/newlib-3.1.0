@@ -14,7 +14,7 @@ __stack_chk_init (void)
   if (__stack_chk_guard != 0)
     return;
 
-#if defined(__CYGWIN__) || defined(__rtems__)
+#if defined(__CYGWIN__) || defined(__rtems__) || defined(__zephyr__)
   arc4random_buf(&__stack_chk_guard, sizeof(__stack_chk_guard));
 #else
   /* If getentropy is not available, use the "terminator canary". */

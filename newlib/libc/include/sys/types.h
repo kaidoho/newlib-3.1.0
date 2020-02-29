@@ -39,7 +39,7 @@ typedef __uint64_t	u_int64_t;
 typedef int register_t;
 #define __BIT_TYPES_DEFINED__ 1
 
-#if defined(__rtems__) || defined(__XMK__)
+#if defined(__rtems__) || defined(__XMK__) || defined(__zephyr__)
 /*
  *  The following section is RTEMS specific and is needed to more
  *  closely match the types defined in the BSD sys/types.h.
@@ -53,7 +53,7 @@ typedef	__int64_t	quad_t;
 typedef	quad_t *	qaddr_t;
 #endif
 
-#endif /* __rtems__ || __XMK__ */
+#endif /* __rtems__ || __XMK__ || __zephyr__ */
 
 #ifndef __need_inttypes
 
